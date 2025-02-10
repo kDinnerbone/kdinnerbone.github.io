@@ -1,205 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ffffff, #a7a7a7, #4e4e4e, #000000);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
+        .button-container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 100px;
+        }
 
+        .column {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .category-btn, .download-btn {
+            margin: 8px;
+            width: 150px;
+            height: 48px;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .category-btn {
+            background-color: #3a3a3a;
+            z-index: 1;
+        }
+
+        .category-btn.sub-category {
+            background-color: #555;
+        }
+
+        .download-btn {
+          background-color: #fff;
+          color: #000;
+          border: none;
+          border-radius: 12px;
+          padding: 12px;
+          cursor: pointer;
+        }
+
+        .category-btn:hover, .download-btn:hover {
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.36);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.48);
+            transform: scale(0);
+            animation: ripple 240ms linear;
+        }
+
+        @keyframes ripple {
+            to { transform: scale(2.4); opacity: 0.12; }
+        }
+
+        .category-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease;
+            gap: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+
+        .category-btn.active + .category-content {
+            display: flex;
+        }
+
+        .sub-category + .category-content {
+            top: -10px;
+            left: 150px;
+            width: 200px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sub-category.video-category + .category-content {
+            left: -170px;
+            top: -10px;
+        }
+    </style>
+</head>
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+    <div class="button-container">
+        <div class="column left">
+            <button class="category-btn">Package</button>
+            <div class="category-content">
+                <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/raw/main/Package.zip'">Download</button>
+                <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/raw/main/Package.zip'">Download</button>
+            </div>
+        </div>
+
+        <div class="column right">
+            <button class="category-btn">Resource</button>
+            <div class="category-content">
+                <button class="category-btn sub-category">Image</button>
+                <div class="category-content">
+                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image</button>
+                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image</button>
+                </div>
+
+                <button class="category-btn sub-category video-category">Video</button>
+                <div class="category-content">
+                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video</button>
+                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/02/09/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-02-09T14:03:36.977Z" itemprop="datePublished">2025-02-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/02/09/hello-world/">Hello World</a>
-    </h1>
-  
+    <script>
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("div");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+            circle.classList.add("ripple");
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            const existingRipple = button.querySelector('.ripple');
+            if (existingRipple) existingRipple.remove();
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+            button.appendChild(circle);
+        }
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isSubCategory = this.classList.contains('sub-category');
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+                if (!isSubCategory) {
+                    document.querySelectorAll('.category-btn:not(.sub-category)').forEach(otherBtn => {
+                        if (otherBtn !== this) otherBtn.classList.remove('active');
+                    });
+                }
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                if (isSubCategory) {
+                    const otherSubCategory = document.querySelector('.sub-category:not(.active)');
+                    if (otherSubCategory) {
+                        otherSubCategory.classList.remove('active');
+                    }
+                }
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/09/hello-world/" data-id="cm6ysygv50000osq76kju4imh" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+                this.classList.toggle('active');
+            });
+        });
 
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.category-btn')) {
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        });
 
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/02/09/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', createRipple);
+        });
+    </script>
 </body>
 </html>
