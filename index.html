@@ -16,13 +16,11 @@
             justify-content: center;
             align-items: center;
         }
-
         @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .button-container {
             position: absolute;
             top: 40%;
@@ -31,13 +29,11 @@
             display: flex;
             gap: 100px;
         }
-
         .column {
             display: flex;
             flex-direction: column;
             position: relative;
         }
-
         .category-btn, .download-btn {
             margin: 8px;
             width: 150px;
@@ -50,29 +46,26 @@
             overflow: hidden;
             transition: all 0.3s;
         }
-
         .category-btn {
             background-color: #3a3a3a;
             z-index: 1;
         }
-
         .category-btn.sub-category {
             background-color: #555;
         }
-
         .download-btn {
-          background-color: #fff;
-          color: #000;
-          border: none;
-          border-radius: 12px;
-          padding: 12px;
-          cursor: pointer;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            display: none;
+            width: 150px;
         }
-
         .category-btn:hover, .download-btn:hover {
             box-shadow: 0 0 18px rgba(255, 255, 255, 0.36);
         }
-
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -80,37 +73,42 @@
             transform: scale(0);
             animation: ripple 240ms linear;
         }
-
         @keyframes ripple {
             to { transform: scale(2.4); opacity: 0.12; }
         }
-
         .category-content {
             display: none;
             position: absolute;
             top: 60px;
-            left: 0;
+            left: -8px;
             flex-direction: column;
             animation: fadeIn 0.5s ease;
             gap: 10px;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; } to { opacity: 1; }
         }
-
         .category-btn.active + .category-content {
             display: flex;
         }
-
+        .sub-category-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px;
+            flex-direction: column;
+        }
         .sub-category + .category-content {
             top: -10px;
             left: 150px;
             width: 200px;
             padding: 10px;
             border-radius: 8px;
+            display: none;
         }
-
+        .sub-category.active + .category-content {
+            display: flex;
+        }
         .sub-category.video-category + .category-content {
             left: -170px;
             top: -10px;
@@ -122,24 +120,104 @@
         <div class="column left">
             <button class="category-btn">Package</button>
             <div class="category-content">
-                <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/raw/main/Package.zip'">Download</button>
-                <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/raw/main/Package.zip'">Download</button>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Vpn</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/V2rayNG.apk'">V2rayNG</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/LetsGoVpn.apk'">LetsGoVpn</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/TakeOffVpn.apk'">TakeOffVpn</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/AtomVpn.apk'">AtomVpn</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/V2Vpn.apk'">V2Vpn</button>
+                    </div>
+                </div>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Unclassified</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitter.apk'">Twitter</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/TikTok.apk'">TikTok</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Telegram.apk'">Telegram</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/TelegramX.apk'">TelegramX</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/YouTube.apk'">YouTube</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Facebook.apk'">Facebook</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Discord.apk'">Discord</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitch.apk'">Twitch</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Instagram.apk'">Instagram</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/OpenAi.GhatGpt.xapk'">OpenAi GhatGpt(XApk)</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/OpenAi.GhatGpt.apk'">OpenAi GhatGpt</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/DeepSeek.apk'">DeepSeek</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Wiki.Pedia.apk'">Wiki Pedia</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Reddit.apk'">Reddit</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Duolingo.apk'">Duolingo</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Kwai.apk'">Kwai</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/RedNote.apk'">RedNote</button>
+                    </div>
+                </div>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Sex</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/Pixiv.apk'">Pixiv</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/EhViewer.apk'">EhViewer</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/JmComic2.apk'">JmComic2</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PWeb.Browser.apk'">PWeb Browser</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/YouKa.apk'">YouKa</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PicAcg.apk'">PicAcg</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/AcFan.apk'">AcFan</button>
+                    </div>
+                </div>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Google</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.apk'">Google</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.apk'">Google Play</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Store.apk'">Google Play Store</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Chrome.apk'">Google Chrome</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gmail.apk'">Google Gmail</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gboard.apk'">Google Gboard</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Translate.apk'">Google Translate</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Game.apk'">Google Play Game</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Maps.apk'">Google Maps</button>
+                    </div>
+                </div>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Microsoft</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.apk'">Microsoft Edge</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Beta.apk'">Microsoft Edge Beta</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Dev.apk'">Microsoft Edge Dev</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Canary.apk'">Microsoft Edge Canary</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Bing.apk'">Microsoft Bing</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Translate.apk'">Microsoft Translate</button>
+                    </div>
+                </div>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Mozilla</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.apk'">Firefox</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Beta.apk'">Firefox Beta</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Nightly.apk'">Firefox Nightly</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Focus.apk'">Firefox Focus</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Focus.xapk'">Firefox Focus(XApk)</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="column right">
             <button class="category-btn">Resource</button>
             <div class="category-content">
-                <button class="category-btn sub-category">Image</button>
-                <div class="category-content">
-                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image</button>
-                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image</button>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Image</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image 1</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Image 2</button>
+                    </div>
                 </div>
-
-                <button class="category-btn sub-category video-category">Video</button>
-                <div class="category-content">
-                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video</button>
-                    <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video</button>
+                <div class="sub-category-container">
+                    <button class="category-btn sub-category">Video</button>
+                    <div class="download-container">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video 1</button>
+                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/'">Download Video 2</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,11 +233,8 @@
             circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
             circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
             circle.classList.add("ripple");
-
-            const existingRipple = button.querySelector('.ripple');
-            if (existingRipple) existingRipple.remove();
-
             button.appendChild(circle);
+            setTimeout(() => circle.remove(), 240);
         }
 
         document.querySelectorAll('.category-btn').forEach(button => {
@@ -167,27 +242,30 @@
                 e.stopPropagation();
                 const isSubCategory = this.classList.contains('sub-category');
 
-                if (!isSubCategory) {
-                    document.querySelectorAll('.category-btn:not(.sub-category)').forEach(otherBtn => {
-                        if (otherBtn !== this) otherBtn.classList.remove('active');
-                    });
-                }
-
                 if (isSubCategory) {
-                    const otherSubCategory = document.querySelector('.sub-category:not(.active)');
-                    if (otherSubCategory) {
-                        otherSubCategory.classList.remove('active');
+                    this.classList.toggle('active');
+                    const downloadContainer = this.nextElementSibling;
+                    if (downloadContainer && downloadContainer.classList.contains('download-container')) {
+                        const downloadButtons = downloadContainer.querySelectorAll('.download-btn');
+                        downloadButtons.forEach(btn => {
+                            btn.style.display = this.classList.contains('active') ? 'inline-block' : 'none';
+                        });
                     }
+                } else {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.style.display = this.classList.contains('active') ? 'flex' : 'none';
                 }
-
-                this.classList.toggle('active');
             });
         });
 
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.category-btn')) {
+            const isCategoryBtnClick = e.target.closest('.category-btn');
+            if (!isCategoryBtnClick) {
                 document.querySelectorAll('.category-btn').forEach(btn => {
                     btn.classList.remove('active');
+                    const content = btn.nextElementSibling;
+                    if (content) content.style.display = 'none';
                 });
             }
         });
