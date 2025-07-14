@@ -1,267 +1,385 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kDb's Web</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1">
+    <title>kDb的下载站</title>
     <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background-color: #e0f7ff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
         }
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .button-container {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 100px;
-        }
-        .column {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .category-btn, .download-btn {
-            margin: 8px;
-            width: 150px;
-            height: 60px;
-            color: #fff;
-            font-size: 20px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        .category-btn {
-            background-color: #00b8f5;
-            z-index: 1;
-        }
-        .category-btn.sub-category {
-            background-color: #007aa3;
-        }
-        .download-btn {
-            background-color: #b3ecff;
-            color: #000000;
-            border: none;
-            border-radius: 12px;
-            padding: 12px;
-            cursor: pointer;
-            display: none;
-            width: 150px;
-        }
-        .category-btn:hover, .download-btn:hover {
-            box-shadow: 0 0 18px rgba(255, 255, 255, 0.36);
-        }
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.48);
-            transform: scale(0);
-            animation: ripple 240ms linear;
-        }
-        @keyframes ripple {
-            to { transform: scale(2.4); opacity: 0.12; }
-        }
-        .category-content {
-            display: none;
-            position: absolute;
-            top: 60px;
-            left: -8px;
-            flex-direction: column;
-            animation: fadeIn 0.5s ease;
-            gap: 10px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
-        .category-btn.active + .category-content {
-            display: flex;
+        h1 {
+            text-align: center;
         }
         .sub-category-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 8px;
-            flex-direction: column;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .sub-category + .category-content {
-            top: -10px;
-            left: 150px;
-            width: 200px;
+        .category-btn {
+            background-color: #bbbbbb;
+            color: rgb(0, 0, 0);
+            font-size: 18px;
+            border: none;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            cursor: default;
+        }
+        .download-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .app-card {
+            background-color: #f2f2f2;
+            width: 134px;
+            height: 230px;
             padding: 10px;
             border-radius: 8px;
-            display: none;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .sub-category.active + .category-content {
-            display: flex;
+        .app-card img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin-bottom: 10px;
         }
-        .sub-category.video-category + .category-content {
-            left: -170px;
-            top: -10px;
+        .app-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+        .app-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            height: 30px;
+        }
+        .download-btn {
+            background-color: #aaaaaa;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-top: 48px;
+            cursor: pointer;
+        }
+        h1 {
+          font-size: 0.8rem;
+        }
+        h1 a {
+          color: #757575;
+          text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <div class="column left">
-            <button class="category-btn">Android</button>
-            <div class="category-content">
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">加速器</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/V2rayNG.apk'">V2rayNG</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/AtomVpn.apk'">AtomVpn</button>
-                    </div>
-                </div>
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">媒体型</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitter.apk'">Twitter</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/TikTok.apk'">TikTok</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Telegram.apk'">Telegram</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/TelegramX.apk'">TelegramX</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/YouTube.apk'">YouTube</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Facebook.apk'">Facebook</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Discord.apk'">Discord</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitch.apk'">Twitch</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Instagram.apk'">Instagram</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/OpenAi.GhatGpt.xapk'">OpenAi GhatGpt(XApk)</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/OpenAi.GhatGpt.apk'">OpenAi GhatGpt</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/DeepSeek.apk'">DeepSeek</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Wiki.Pedia.apk'">Wiki Pedia</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Reddit.apk'">Reddit</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Duolingo.apk'">Duolingo</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Kwai.apk'">Kwai</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/RedNote.apk'">RedNote</button>
-                    </div>
-                </div>
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">限制级</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/Pixiv.apk'">Pixiv</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/EhViewer.apk'">EhViewer</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/JmComic2.apk'">JmComic2</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PWeb.Browser.apk'">PWeb Browser</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/YouKa.apk'">YouKa</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PicAcg.apk'">PicAcg</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/AcFan.apk'">AcFan</button>
-                    </div>
-                </div>
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">Google</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.apk'">Google</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.apk'">Google Play</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Store.apk'">Google Play Store</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Chrome.apk'">Google Chrome</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gmail.apk'">Google Gmail</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gboard.apk'">Google Gboard</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Translate.apk'">Google Translate</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Game.apk'">Google Play Game</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Maps.apk'">Google Maps</button>
-                    </div>
-                </div>
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">Microsoft</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.apk'">Microsoft Edge</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Beta.apk'">Microsoft Edge Beta</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Dev.apk'">Microsoft Edge Dev</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Canary.apk'">Microsoft Edge Canary</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Bing.apk'">Microsoft Bing</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Translate.apk'">Microsoft Translate</button>
-                    </div>
-                </div>
-                <div class="sub-category-container">
-                    <button class="category-btn sub-category">Mozilla</button>
-                    <div class="download-container">
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.apk'">Firefox</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Beta.apk'">Firefox Beta</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Nightly.apk'">Firefox Nightly</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Focus.apk'">Firefox Focus</button>
-                        <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Focus.xapk'">Firefox Focus(XApk)</button>
-                    </div>
-                </div>
-            </div>
+
+<h1><a href="https://https://github.com/kDinnerbone/kdinnerbone.github.io">kDinnerbone的Github仓库</a></h1>
+<h1>本人QQ: 1493036504, 交流群: 1021564358</h1>
+<h1>如果你觉得内容有用, 就请在我的Github仓库点上一个Star, 这对我非常有帮助! </h1>
+
+<div class="sub-category-container">
+    <button class="category-btn">加速器</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/vpn/v2rayng.png" alt="V2rayNG">
+            <div class="app-name">V2rayNG</div>
+            <div class="app-desc">一款基于V2Ray核心的代理工具, 支持多种代理协议, 可帮助用户安全访问网络, 配置灵活且稳定性较强. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/V2rayNG.apk'">下载</button>
         </div>
+        <div class="app-card">
+            <img src="resource/icon/vpn/atom.png" alt="Atom">
+            <div class="app-name">Atom</div>
+            <div class="app-desc">轻量级网络加速工具, 提供快速稳定的代理服务, 界面简洁易用, 适合日常浏览和访问各类网络资源. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Vpn/Atom.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-    <script>
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement("div");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-            circle.classList.add("ripple");
-            button.appendChild(circle);
-            setTimeout(() => circle.remove(), 240);
-        }
+<div class="sub-category-container">
+    <button class="category-btn">媒体型</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/unclassified/twitter.png" alt="Twitter">
+            <div class="app-name">Twitter</div>
+            <div class="app-desc">全球知名的社交平台, 用户可发布短消息(推文)分享观点和动态, 实时获取全球热点资讯和名人动态. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitter.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/tiktok.png" alt="TikTok">
+            <div class="app-name">TikTok</div>
+            <div class="app-desc">热门短视频平台, 以15秒至数分钟的创意短视频为主, 涵盖音乐、舞蹈、搞笑、生活技巧等多种内容. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/TikTok.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/telegram.png" alt="Telegram">
+            <div class="app-name">Telegram</div>
+            <div class="app-desc">注重隐私的即时通讯工具, 支持一对一聊天、群组聊天和文件传输, 提供端到端加密保障信息安全. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Telegram.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/youtube.png" alt="YouTube">
+            <div class="app-name">YouTube</div>
+            <div class="app-desc">全球最大的视频分享平台, 包含海量视频内容, 如电影、音乐、教程、Vlog等, 支持用户上传和观看视频. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/YouTube.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/facebook.png" alt="Facebook">
+            <div class="app-name">Facebook</div>
+            <div class="app-desc">老牌社交平台, 用户可添加好友、分享生活动态、创建群组, 同时集成了新闻资讯和小游戏功能. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Facebook.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/discord.png" alt="Discord">
+            <div class="app-name">Discord</div>
+            <div class="app-desc">主要面向游戏玩家的社交平台, 支持语音通话、文字聊天和频道分类, 广泛用于游戏组队和社区交流. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Discord.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/twitch.png" alt="Twitch">
+            <div class="app-name">Twitch</div>
+            <div class="app-desc">专注于游戏直播的平台, 涵盖各类游戏直播内容, 用户可观看专业选手比赛、游戏攻略和娱乐直播. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Twitch.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/instagram.png" alt="Instagram">
+            <div class="app-name">Instagram</div>
+            <div class="app-desc">以图片和短视频分享为主的社交平台, 支持滤镜美化、故事功能和IGTV长视频, 是时尚和生活分享的热门选择. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Instagram.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/chatgpt.png" alt="ChatGpt">
+            <div class="app-name">ChatGpt</div>
+            <div class="app-desc">由OpenAI开发的人工智能聊天工具, 可进行自然语言对话, 回答问题、生成文本、提供建议等多种智能服务. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/GhatGpt.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/wiki_pedia.png" alt="Wiki Pedia">
+            <div class="app-name">Wiki Pedia</div>
+            <div class="app-desc">免费的在线百科全书, 涵盖几乎所有领域的知识, 由全球志愿者协作编辑, 是获取权威信息的重要来源. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Wiki.Pedia.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/reddit.png" alt="Reddit">
+            <div class="app-name">Reddit</div>
+            <div class="app-desc">被称为“互联网前线”的社交新闻聚合平台, 用户可在不同主题社区(Subreddit)分享内容、投票和讨论. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Reddit.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/duolingo.png" alt="Duolingo">
+            <div class="app-name">Duolingo</div>
+            <div class="app-desc">趣味语言学习应用, 通过游戏化的方式教授多种语言, 包含词汇、语法、听力和口语练习, 适合零基础入门. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Duolingo.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/bilibili.png" alt="Bilibili">
+            <div class="app-name">Bilibili</div>
+            <div class="app-desc">海外版Bilibili, 无广告, 含海量全球优质内容, 弹幕互动, 智能推荐, 受年轻人青睐. 
+            </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Bilibili.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/kwai.png" alt="Kwai">
+            <div class="app-name">Kwai</div>
+            <div class="app-desc">海外版快手, 专注于短视频分享, 内容以生活记录、才艺展示和搞笑片段为主, 支持一键拍摄和特效编辑. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/Kwai.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/unclassified/rednote.png" alt="RedNote">
+            <div class="app-name">RedNote</div>
+            <div class="app-desc">海外版小红书, 汇聚全球生活灵感, 支持多语言, 分享穿搭、旅行等, 个性化推荐精彩内容. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Unclassified/RedNote.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-        document.querySelectorAll('.category-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isSubCategory = this.classList.contains('sub-category');
+<div class="sub-category-container">
+    <button class="category-btn">限制级</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/sex/pixiv.png" alt="Pixiv">
+            <div class="app-name">Pixiv</div>
+            <div class="app-desc">是全球知名艺术社区, 无数用户分享插画,漫画,小说, 支持作品展示,交流与变现. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/Pixiv.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/ehviewer.png" alt="EhViewer">
+            <div class="app-name">EhViewer</div>
+            <div class="app-desc">主打免登录轻量化, 有海量漫画, 具备智能清理,创意编辑等特色功能. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/EhViewer.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/jmcomic2.png" alt="JmComic2">
+            <div class="app-name">JmComic2</div>
+            <div class="app-desc">漫画阅读利器, 汇聚海量正版资源, 涵盖多类题材, 界面简洁, 支持离线及多设备同步. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/JmComic2.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/youka.png" alt="YouKa">
+            <div class="app-name">YouKa</div>
+            <div class="app-desc">游戏下载平台, 支持下载千种游戏, 用户和平台都很活跃, 支持用户上传自己的游戏, 或分享游戏资源. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/YouKa.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/picacg.png" alt="PicAcg">
+            <div class="app-name">PicAcg</div>
+            <div class="app-desc">漫画视频各种作品集合起来的平台, 在这里用户可以阅读观看各种内容, 资源分类非常广, 总能找到自己喜欢的内容. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PicAcg.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/acfan.png" alt="AcFan">
+            <div class="app-name">AcFan</div>
+            <div class="app-desc">弹幕视频平台, 有多元视频内容, 用户可通过弹幕互动, 形成独特社区氛围. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/AcFan.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/sex/pweb_browser.png" alt="PWeb Browser">
+            <div class="app-name">PWeb Browser</div>
+            <div class="app-desc">把各种网站应用和到一块的软件, 让用户浏览查找资源更加方便, 避免了存储空间不够和忘了网站链接的问题. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Sex/PWeb.Browser.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-                if (isSubCategory) {
-                    this.classList.toggle('active');
-                    const downloadContainer = this.nextElementSibling;
-                    if (downloadContainer && downloadContainer.classList.contains('download-container')) {
-                        const downloadButtons = downloadContainer.querySelectorAll('.download-btn');
-                        downloadButtons.forEach(btn => {
-                            btn.style.display = this.classList.contains('active') ? 'inline-block' : 'none';
-                        });
-                    }
-                } else {
-                    this.classList.toggle('active');
-                    const content = this.nextElementSibling;
-                    content.style.display = this.classList.contains('active') ? 'flex' : 'none';
-                }
-            });
-        });
+<div class="sub-category-container">
+    <button class="category-btn">Google</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/google/google.png" alt="Google">
+            <div class="app-name">Google</div>
+            <div class="app-desc">谷歌官方应用, 集成了搜索、新闻、天气和个性化推荐等功能, 快速获取全球信息和服务. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_play.png" alt="Google Play">
+            <div class="app-name">Google Play</div>
+            <div class="app-desc">谷歌应用商店的核心组件, 提供应用、游戏、电影、音乐等内容的下载和管理, 保障应用安全. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_play_store.png" alt="Google Play Store">
+            <div class="app-name">Google Play Store</div>
+            <div class="app-desc">谷歌官方应用商店, 收录数百万款应用和游戏, 支持用户购买、下载和更新各类数字内容. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Store.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_chrome.png" alt="Google Chrome">
+            <div class="app-name">Google Chrome</div>
+            <div class="app-desc">谷歌推出的网页浏览器, 以快速、安全和同步功能著称, 支持多标签页、扩展程序和无痕浏览. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Chrome.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_gmail.png" alt="Google Gmail">
+            <div class="app-name">Google Gmail</div>
+            <div class="app-desc">谷歌官方邮件服务, 提供高效的邮件管理功能, 支持分类标签、邮件过滤和云端同步, 安全可靠. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gmail.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_gboard.png" alt="Google Gboard">
+            <div class="app-name">Google Gboard</div>
+            <div class="app-desc">谷歌输入法, 支持多种语言输入、语音输入、表情符号和智能联想功能, 提升打字效率和体验. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Gboard.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_translate.png" alt="Google Translate">
+            <div class="app-name">Google Translate</div>
+            <div class="app-desc">谷歌翻译工具, 支持超过100种语言的文本、语音和图片翻译, 实时翻译帮助跨越语言障碍. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Translate.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_play_game.png" alt="Google Play Game">
+            <div class="app-name">Google Play Game</div>
+            <div class="app-desc">谷歌游戏服务平台, 支持游戏存档云端同步、成就系统和好友排名, 集中管理已安装的游戏. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Play.Game.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/google/google_maps.png" alt="Google Maps">
+            <div class="app-name">Google Maps</div>
+            <div class="app-desc">谷歌地图应用, 提供全球精准地图、导航、实时交通信息和地点推荐, 支持驾车、步行和公共交通路线规划. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Google/Google.Maps.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('click', (e) => {
-            const isCategoryBtnClick = e.target.closest('.category-btn');
-            if (!isCategoryBtnClick) {
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    const content = btn.nextElementSibling;
-                    if (content) content.style.display = 'none';
-                });
-            }
-        });
+<div class="sub-category-container">
+    <button class="category-btn">Microsoft</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_edge.png" alt="Microsoft Edge">
+            <div class="app-name">Microsoft Edge</div>
+            <div class="app-desc">微软推出的网页浏览器, 基于Chromium内核, 支持同步功能、扩展程序和阅读模式, 兼顾速度和安全性. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_edge_beta.png" alt="Microsoft Edge Beta">
+            <div class="app-name">Microsoft Edge Beta</div>
+            <div class="app-desc">Edge浏览器的测试版本, 提前体验新功能和改进, 适合喜欢尝试新特性的用户, 稳定性较好. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Beta.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_edge_dev.png" alt="Microsoft Edge Dev">
+            <div class="app-name">Microsoft Edge Dev</div>
+            <div class="app-desc">Edge浏览器的开发版本, 包含最新的功能和更新, 供开发者和早期用户测试, 可能存在部分不稳定情况. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Dev.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_edge_canary.png" alt="Microsoft Edge Canary">
+            <div class="app-name">Microsoft Edge Canary</div>
+            <div class="app-desc">Edge浏览器的每日更新版本, 包含最前沿的实验性功能, 适合技术爱好者测试, 稳定性相对较低. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Edge.Canary.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_bing.png" alt="Microsoft Bing">
+            <div class="app-name">Microsoft Bing</div>
+            <div class="app-desc">微软推出的搜索引擎应用, 提供网页搜索、图片搜索、新闻和地图服务, 支持语音搜索和智能回答. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Bing.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/microsoft/microsoft_translator.png" alt="Microsoft Translator">
+            <div class="app-name">Microsoft Translator</div>
+            <div class="app-desc">微软翻译工具, 支持文本、语音、图片和实时对话翻译, 支持多种语言, 离线翻译功能实用. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Microsoft/Microsoft.Translator.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', createRipple);
-        });
+<div class="sub-category-container">
+    <button class="category-btn">Mozilla</button>
+    <div class="download-container">
+        <div class="app-card">
+            <img src="resource/icon/mozilla/firefox.png" alt="Firefox">
+            <div class="app-name">Firefox</div>
+            <div class="app-desc"> Mozilla推出的开源网页浏览器, 注重隐私保护和自定义功能, 支持扩展插件和同步服务. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/mozilla/firefox_beta.png" alt="Firefox Beta">
+            <div class="app-name">Firefox Beta</div>
+            <div class="app-desc">Firefox的测试版本, 包含即将发布的新功能, 经过初步测试, 适合用户提前体验并反馈问题. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Beta.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/mozilla/firefox_nightly.png" alt="Firefox Nightly">
+            <div class="app-name">Firefox Nightly</div>
+            <div class="app-desc">Firefox的每日构建版本, 包含最新开发的功能和代码, 供开发者和测试人员使用, 更新频率高. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Nightly.apk'">下载</button>
+        </div>
+        <div class="app-card">
+            <img src="resource/icon/mozilla/firefox_focus.png" alt="Firefox Focus">
+            <div class="app-name">Firefox Focus</div>
+            <div class="app-desc">注重隐私保护的轻量级浏览器, 自动阻止广告和跟踪器, 浏览记录自动清除, 保护用户上网隐私. </div>
+            <button class="download-btn" onclick="window.location.href='https://github.com/kDinnerbone/kdinnerbone.github.io/releases/download/Mozilla/Firefox.Focus.apk'">下载</button>
+        </div>
+    </div>
+</div>
 
-        function resetAllButtons() {
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-        const next = btn.nextElementSibling;
-        if (next && (next.classList.contains('category-content') || next.classList.contains('download-container'))) {
-            next.style.display = 'none';
-        }
-    });
-
-    document.querySelectorAll('.download-btn').forEach(btn => {
-        btn.style.display = 'none';
-    });
-}
-    </script>
 </body>
 </html>
