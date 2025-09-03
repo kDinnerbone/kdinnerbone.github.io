@@ -37,12 +37,17 @@
         }
         .app-card {
             background-color: #f2f2f2;
-            width: 154px;
+            width: 137.5px;
             height: 230px;
             padding: 10px;
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        @media screen and (min-width: 769px) {
+        .app-card {
+             width: 154px;
+                  }
         }
         .app-card img {
             width: 66px;
@@ -72,18 +77,30 @@
             cursor: pointer;
         }
         h1 {
-          font-size: 0.8rem;
+            font-size: 0.8rem;
         }
         h1 a {
-          color: #757575;
-          text-decoration: none;
+            color: #757575;
+            text-decoration: none;
+        }
+        .pc-h1 {
+            display: block;
+            color: #757575;
+        }
+        .mobile-h1 {
+            display: none;
+            color: #757575;
+        }
+        @media screen and (max-width: 768px) {
+            .pc-h1 { display: none; }
+            .mobile-h1 { display: block; }
         }
     </style>
 </head>
 <body>
 
 <h1><a href="https://https://github.com/kDinnerbone/kdinnerbone.github.io">kDinnerbone的Github仓库</a></h1>
-<h1>交流群: 1021564358</h1>
+<h1>交流群: <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=BOTz%2FqSUyPJ555J1WpuqyNgbC0pSLEkJ4Xu9EFV7Ys9Fy2%2BLd9wXhT2PR0TdUCs3&busi_data=eyJncm91cENvZGUiOiIxMDIxNTY0MzU4IiwidG9rZW4iOiJUbEVteWI0aS9ZRll0UmJxT21MVHgxd2ZmL28xaHdsRHJuT2xzVlQvQ1JKcDFoakFFcnQvNlJURmlVeFdHa3BjIiwidWluIjoiMTQ5MzAzNjUwNCJ9&data=ZwlqEEybUkQYUEpZC2iB1RX9QoFWf1GluCXdGlKZRsF4eogRCxCVn6a5H3hWTwTOvnMqR0dTCLtcxWJmuZqBDQ&svctype=4&tempid=h5_group_info">1021564358</a></h1>
 <h1>如果你觉得内容有用, 就请在我的Github仓库点上一个Star, 这对我非常有帮助! </h1>
 
 <div class="sub-category-container">
@@ -398,6 +415,9 @@
         </div>
     </div>
 </div>
+
+<h1 class="pc-h1">您当前是电脑端或宽屏浏览</h1>
+<h1 class="mobile-h1">您当前是手机端或窄屏浏览</h1>
 
 </body>
 </html>
